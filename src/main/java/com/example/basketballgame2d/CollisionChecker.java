@@ -1,7 +1,11 @@
 package com.example.basketballgame2d;
 
-public interface CollisionChecker {
-    public default void checkCollisions(){
-        System.out.println("Collision Checker Interface");
+import com.example.basketballgame2d.Ball.Ball;
+import com.example.basketballgame2d.Cerceau.Cerceau;
+
+public class CollisionChecker {
+    static boolean checkCollision(Ball ball, Cerceau cerceau) {
+        return false;
     }
+
 }
