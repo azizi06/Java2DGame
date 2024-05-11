@@ -12,6 +12,6 @@ public class Constants {
     public static final int CERCEAU_INIT_X = 100;
     public static final int CERCEAU_INIT_Y = WINDOW_HEIGHT / 2;
 
-    final  static  int BALL_HIEGHT = 70;
-    final  static  int BALL_WIDTH = 70;
+    public final  static  int BALL_HIEGHT = 70;
+    public final  static  int BALL_WIDTH = 70;
 }
