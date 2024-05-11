@@ -46,11 +46,14 @@ public class MainController implements Initializable {
         changeCerceauPosition();
     }
 
-    public void changeCerceauPosition(){
+
+    public void changeCerceauPosition(){ // Use when the ball goes through the cerceau
         cerceau.put_random_position();
         cerceau.cerceauSprite.setX(cerceau.getPositionX());
         cerceau.cerceauSprite.setY(cerceau.getPositionY());
     }
+
+
     public  void  displayBall(){
     }
 
