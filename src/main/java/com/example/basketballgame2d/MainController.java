@@ -42,8 +42,10 @@ public class MainController implements Initializable {
 
     public void displayCerceau(MouseEvent event){
         cerceau.put_random_position();
-        anchorPane.getChildren().remove(cerceau.cerceauSprite);
+        cerceau.cerceauSprite.setX(cerceau.getPositionX());
+        cerceau.cerceauSprite.setY(cerceau.getPositionY());
 
+        anchorPane.getChildren().remove(cerceau.cerceauSprite);
         anchorPane.getChildren().add(cerceau.cerceauSprite);
     }
 
