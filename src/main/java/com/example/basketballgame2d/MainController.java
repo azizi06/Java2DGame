@@ -56,7 +56,9 @@ public class MainController implements Initializable {
     }
 
     private void update(long elapsedTime) {
-
+        if(CollisionChecker.checkCollision(ball, cerceau)) {
+            goesThrough(null);
+        }
     }
 
     private void render() {
@@ -77,6 +79,8 @@ public class MainController implements Initializable {
     }
 
     public void goesThrough(MouseEvent event) { // Use when the ball goes through the cerceau
+
+
 
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
