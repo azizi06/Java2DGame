@@ -43,4 +43,7 @@ public class Cerceau {
     }
 
 
+    public ImageView getCerceauSprite() {
+        return cerceauSprite;
+    }
 }

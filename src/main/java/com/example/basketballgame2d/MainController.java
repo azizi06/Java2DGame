@@ -2,7 +2,7 @@ package com.example.basketballgame2d;
 
 import com.example.basketballgame2d.Ball.Ball;
 import com.example.basketballgame2d.Cerceau.Cerceau;
-import com.example.basketballgame2d.MouseHandler.MouseHandler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -11,51 +11,82 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-// Initializable is an interface that is called when the controller is initialized.
 public class MainController implements Initializable {
+
+    private boolean running = false;
+    private long lastUpdateTime;
+
     @FXML
     AnchorPane anchorPane;
 
-
     public Ball ball;
     public Cerceau cerceau;
-    public MouseHandler mouseHandler;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*                      Ball                      */
-
         ball = new Ball();
-        displayBall();
-
-        /*                      Cerceau                      */
-
-
         cerceau = new Cerceau(Constants.CERCEAU_INIT_X, Constants.CERCEAU_INIT_Y);
-        displayCerceau(null);
 
+        startGameLoop();
+    }
+
+    private void startGameLoop() {
+        running = true;
+        lastUpdateTime = System.nanoTime();
+
+        Thread gameThread = new Thread(() -> {
+            while (running) {
+                long now = System.nanoTime();
+                long elapsedTime = now - lastUpdateTime;
+                lastUpdateTime = now;
+                System.out.println("In Game Loop");
+
+                update(elapsedTime);
+
+                Platform.runLater(this::render);
+
+                try {
+                    Thread.sleep(10); // For FrameRate
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        gameThread.start();
+    }
+
+    private void update(long elapsedTime) {
 
     }
 
+    private void render() {
 
-    public void displayCerceau(MouseEvent event){
-        anchorPane.getChildren().remove(cerceau.cerceauSprite);
-        anchorPane.getChildren().add(cerceau.cerceauSprite);
-        changeCerceauPosition();
+        displayBall();
+        displayCerceau();
     }
 
+    public void stop() {
+        running = false;
+    }
 
-    public void changeCerceauPosition(){ // Use when the ball goes through the cerceau
+    public void displayCerceau() {
+        Platform.runLater(() -> {
+            anchorPane.getChildren().remove(cerceau.getCerceauSprite());
+            anchorPane.getChildren().add(cerceau.getCerceauSprite());
+        });
+    }
+
+    public void goesThrough() { // Use when the ball goes through the cerceau
+
         cerceau.put_random_position();
-        cerceau.cerceauSprite.setX(cerceau.getPositionX());
-        cerceau.cerceauSprite.setY(cerceau.getPositionY());
+        cerceau.getCerceauSprite().setX(cerceau.getPositionX());
+        cerceau.getCerceauSprite().setY(cerceau.getPositionY());
     }
 
-
-    public  void  displayBall(){
-        anchorPane.getChildren().add(ball.getBallSprite());
+    public void displayBall() {
+        Platform.runLater(() -> {
+            anchorPane.getChildren().remove(ball.getBallSprite());
+            anchorPane.getChildren().add(ball.getBallSprite());
+        });
     }
-
 }
