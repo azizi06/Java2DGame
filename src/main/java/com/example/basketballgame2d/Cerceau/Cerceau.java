@@ -36,5 +36,10 @@ public class Cerceau {
     public void put_random_position() {
         this.positionX = (int) (Math.random() * Constants.WINDOW_WIDTH);
         this.positionY = (int) (Math.random() * Constants.WINDOW_HEIGHT);
+        System.out.println("Cerceau moved to position: " + positionX + ", " + positionY);
+        this.setPositionX(positionX);
+        this.setPositionY(positionY);
     }
+
+
 }
