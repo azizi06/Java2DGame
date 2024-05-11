@@ -76,7 +76,7 @@ public class MainController implements Initializable {
         });
     }
 
-    public void goesThrough() { // Use when the ball goes through the cerceau
+    public void goesThrough(MouseEvent event) { // Use when the ball goes through the cerceau
 
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
