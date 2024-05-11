@@ -18,7 +18,6 @@ public class MainController implements Initializable {
 
     @FXML
     AnchorPane anchorPane;
-
     public Ball ball;
     public Cerceau cerceau;
 
@@ -26,6 +25,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ball = new Ball();
         cerceau = new Cerceau(Constants.CERCEAU_INIT_X, Constants.CERCEAU_INIT_Y);
+        System.out.println("In Game Loop");
 
         startGameLoop();
     }
@@ -39,7 +39,6 @@ public class MainController implements Initializable {
                 long now = System.nanoTime();
                 long elapsedTime = now - lastUpdateTime;
                 lastUpdateTime = now;
-                System.out.println("In Game Loop");
 
                 update(elapsedTime);
 
@@ -57,7 +56,7 @@ public class MainController implements Initializable {
 
     private void update(long elapsedTime) {
         if(CollisionChecker.checkCollision(ball, cerceau)) {
-            goesThrough(null);
+            goesThrough(null); // Za3ma marka donc position t3 cerceau ttbdel
         }
     }
 
@@ -92,5 +91,9 @@ public class MainController implements Initializable {
             anchorPane.getChildren().remove(ball.getBallSprite());
             anchorPane.getChildren().add(ball.getBallSprite());
         });
+    }
+
+    public void winAnimation(){
+
     }
 }
