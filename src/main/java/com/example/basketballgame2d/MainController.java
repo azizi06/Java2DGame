@@ -28,7 +28,7 @@ public class MainController implements Initializable {
         /*                      Ball                      */
 
         ball = new Ball();
-        anchorPane.getChildren().add(ball.getBallSprite());
+        displayBall();
 
         /*                      Cerceau                      */
 
@@ -55,6 +55,7 @@ public class MainController implements Initializable {
 
 
     public  void  displayBall(){
+        anchorPane.getChildren().add(ball.getBallSprite());
     }
 
 }
