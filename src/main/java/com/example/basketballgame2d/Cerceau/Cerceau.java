@@ -4,6 +4,8 @@ import com.example.basketballgame2d.Constants;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Random;
+
 public class Cerceau {
     private int positionX, positionY;
     public ImageView cerceauSprite;
@@ -34,11 +36,10 @@ public class Cerceau {
     }
 
     public void put_random_position() {
-        this.positionX = (int) (Math.random() * Constants.WINDOW_WIDTH);
-        this.positionY = (int) (Math.random() * Constants.WINDOW_HEIGHT);
+        Random random = new Random();
+        this.setPositionX(random.nextInt(Constants.WINDOW_WIDTH - 250));
+        this.setPositionY(random.nextInt(Constants.WINDOW_HEIGHT / 3));
         System.out.println("Cerceau moved to position: " + positionX + ", " + positionY);
-        this.setPositionX(positionX);
-        this.setPositionY(positionY);
     }
 
 
