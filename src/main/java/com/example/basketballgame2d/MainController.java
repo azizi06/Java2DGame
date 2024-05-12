@@ -5,6 +5,8 @@ import com.example.basketballgame2d.Cerceau.Cerceau;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,11 +22,15 @@ public class MainController implements Initializable {
     AnchorPane anchorPane;
     public Ball ball;
     public Cerceau cerceau;
+    public ScoreAnimation scoreAnimation;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ball = new Ball();
         cerceau = new Cerceau(Constants.CERCEAU_INIT_X, Constants.CERCEAU_INIT_Y);
+        scoreAnimation = new ScoreAnimation(cerceau);
         System.out.println("In Game Loop");
 
         startGameLoop();
@@ -71,6 +77,8 @@ public class MainController implements Initializable {
     }
 
     public void randomCerceau() {
+        winAnimation();
+
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
         cerceau.getCerceauSprite().setY(cerceau.getPositionY());
@@ -85,7 +93,7 @@ public class MainController implements Initializable {
 
     public void goesThrough(MouseEvent event) { // Use when the ball goes through the cerceau
 
-
+        winAnimation();
 
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
@@ -100,6 +108,10 @@ public class MainController implements Initializable {
     }
 
     public void winAnimation(){
-
+        scoreAnimation.score();
+        Platform.runLater(() -> {
+            anchorPane.getChildren().remove(scoreAnimation.scoreSprite);
+            anchorPane.getChildren().add(scoreAnimation.scoreSprite);
+        });
     }
 }
