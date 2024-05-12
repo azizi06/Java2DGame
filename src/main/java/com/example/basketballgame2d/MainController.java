@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +24,8 @@ public class MainController implements Initializable {
     @FXML
     AnchorPane anchorPane;
     public Ball ball;
+    public Circle circle = new Circle(50, 150, 50, Color.RED);
+
     public Cerceau cerceau;
     public ScoreAnimation scoreAnimation;
 
@@ -29,6 +33,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         ball = new Ball();
         cerceau = new Cerceau(Constants.CERCEAU_INIT_X, Constants.CERCEAU_INIT_Y);
         scoreAnimation = new ScoreAnimation(cerceau);
@@ -103,8 +109,10 @@ public class MainController implements Initializable {
 
     public void displayBall() {
         Platform.runLater(() -> {
+
             anchorPane.getChildren().remove(ball.getBallSprite());
             anchorPane.getChildren().add(ball.getBallSprite());
+          //  anchorPane.getChildren().add(circle);
         });
     }
 
@@ -115,8 +123,10 @@ public class MainController implements Initializable {
             anchorPane.getChildren().add(scoreAnimation.scoreSprite);
         });
     }
-    public  void eventHandler(){
-        MouseHandler mouse = new MouseHandler(ball);
+    public  void eventHandler(MouseEvent e){
+        MouseHandler mouse = new MouseHandler(ball,circle);
+        mouse.handle(e);
+
 
     }
 }

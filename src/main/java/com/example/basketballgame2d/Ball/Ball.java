@@ -1,8 +1,10 @@
 package com.example.basketballgame2d.Ball;
 
 import com.example.basketballgame2d.Constants;
+import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Translate;
 
 public class Ball {
     private  int positionX,getPositionY;
@@ -24,6 +26,12 @@ public class Ball {
         return ballSprite;
     }
     public void TrowBall(Double x,Double y){
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(ballSprite);
+        translateTransition.setByX(-x);
+        translateTransition.setByY(-y);
+        translateTransition.play();
+
      //  this.ballSprite
 
     }
