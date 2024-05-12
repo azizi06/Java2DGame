@@ -15,7 +15,7 @@ public class ScoreAnimation {
 //    ImageView scoreSprite;
 
     @FXML
-    Text scoreSprite;
+    Text scoreSprite; // Needs to be changed
 
 
     Cerceau cerceau;
