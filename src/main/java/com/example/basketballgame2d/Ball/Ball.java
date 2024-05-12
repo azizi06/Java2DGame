@@ -27,4 +27,11 @@ public class Ball {
      //  this.ballSprite
 
     }
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public int getPositionY() {
+        return  this.getPositionY;
+    }
 }

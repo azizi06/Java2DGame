@@ -2,6 +2,7 @@ package com.example.basketballgame2d;
 
 import com.example.basketballgame2d.Ball.Ball;
 import com.example.basketballgame2d.Cerceau.Cerceau;
+import com.example.basketballgame2d.MouseHandler.MouseHandler;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -113,5 +114,9 @@ public class MainController implements Initializable {
             anchorPane.getChildren().remove(scoreAnimation.scoreSprite);
             anchorPane.getChildren().add(scoreAnimation.scoreSprite);
         });
+    }
+    public  void eventHandler(){
+        MouseHandler mouse = new MouseHandler(ball);
+
     }
 }
