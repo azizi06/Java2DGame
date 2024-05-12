@@ -70,6 +70,12 @@ public class MainController implements Initializable {
         running = false;
     }
 
+    public void randomCerceau() {
+        cerceau.put_random_position();
+        cerceau.getCerceauSprite().setX(cerceau.getPositionX());
+        cerceau.getCerceauSprite().setY(cerceau.getPositionY());
+    }
+
     public void displayCerceau() {
         Platform.runLater(() -> {
             anchorPane.getChildren().remove(cerceau.getCerceauSprite());
