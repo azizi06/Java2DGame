@@ -20,18 +20,11 @@ public class Ball {
 
    }
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public int getPositionY() {
-        return getPositionY;
-    }
-
     public ImageView getBallSprite() {
         return ballSprite;
     }
-    public void TrowBall(){
+    public void TrowBall(Double x,Double y){
+     //  this.ballSprite
 
     }
 }
