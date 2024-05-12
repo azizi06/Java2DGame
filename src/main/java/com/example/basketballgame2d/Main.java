@@ -31,6 +31,7 @@ public class Main extends Application {
             Scene scene = new Scene(GamefxmlLoader.load(), Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
             stage.setTitle(Constants.WINDOW_TITLE);
             stage.setScene(scene);
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
