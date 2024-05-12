@@ -2,12 +2,11 @@ package com.example.basketballgame2d;
 
 import com.example.basketballgame2d.Ball.Ball;
 import com.example.basketballgame2d.Cerceau.Cerceau;
-import com.example.basketballgame2d.MouseHandler.MouseHandler;
 import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,17 +20,19 @@ public class MainController implements Initializable {
 
     @FXML
     AnchorPane anchorPane;
-
     public Ball ball;
     public Cerceau cerceau;
+    public ScoreAnimation scoreAnimation;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ball = new Ball();
         cerceau = new Cerceau(Constants.CERCEAU_INIT_X, Constants.CERCEAU_INIT_Y);
-     //   anchorPane.addEventHandler(new MouseHandler(ball));
+        scoreAnimation = new ScoreAnimation(cerceau);
+        System.out.println("In Game Loop");
 
-    anchorPane.addEventHandler(new EventType<MouseEvent>(),new MouseHandler(ball));
         startGameLoop();
     }
 
@@ -44,7 +45,6 @@ public class MainController implements Initializable {
                 long now = System.nanoTime();
                 long elapsedTime = now - lastUpdateTime;
                 lastUpdateTime = now;
-               // System.out.println("In Game Loop");
 
                 update(elapsedTime);
 
@@ -62,7 +62,7 @@ public class MainController implements Initializable {
 
     private void update(long elapsedTime) {
         if(CollisionChecker.checkCollision(ball, cerceau)) {
-            goesThrough(null);
+            goesThrough(null); // Za3ma marka donc position t3 cerceau ttbdel
         }
     }
 
@@ -76,6 +76,14 @@ public class MainController implements Initializable {
         running = false;
     }
 
+    public void randomCerceau() {
+        winAnimation();
+
+        cerceau.put_random_position();
+        cerceau.getCerceauSprite().setX(cerceau.getPositionX());
+        cerceau.getCerceauSprite().setY(cerceau.getPositionY());
+    }
+
     public void displayCerceau() {
         Platform.runLater(() -> {
             anchorPane.getChildren().remove(cerceau.getCerceauSprite());
@@ -84,10 +92,12 @@ public class MainController implements Initializable {
     }
 
     public void goesThrough(MouseEvent event) { // Use when the ball goes through the cerceau
+
+        winAnimation();
+
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
         cerceau.getCerceauSprite().setY(cerceau.getPositionY());
-
     }
 
     public void displayBall() {
@@ -96,10 +106,12 @@ public class MainController implements Initializable {
             anchorPane.getChildren().add(ball.getBallSprite());
         });
     }
-    @FXML
-    private  void eventHandler(MouseEvent e){
-         MouseHandler mouse = new MouseHandler(ball);
-         mouse.handle(e);
 
+    public void winAnimation(){
+        scoreAnimation.score();
+        Platform.runLater(() -> {
+            anchorPane.getChildren().remove(scoreAnimation.scoreSprite);
+            anchorPane.getChildren().add(scoreAnimation.scoreSprite);
+        });
     }
 }
