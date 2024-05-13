@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#eventHandler" prefHeight="800.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basketballgame2d.MainController">
    <children>
@@ -13,6 +14,7 @@
          </image>
       </ImageView>
       <Button layoutX="622.0" layoutY="628.0" mnemonicParsing="false" onMouseClicked="#randomCerceau" text="Random Cerceau Pos" />
+      <Circle fx:id="collisionCircle" fill="DODGERBLUE" layoutX="365.0" layoutY="209.0" radius="41.0" stroke="BLACK" strokeType="INSIDE" />
 
    </children>
 </AnchorPane>

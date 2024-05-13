@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +24,15 @@ public class MainController implements Initializable {
 
     @FXML
     AnchorPane anchorPane;
+    @FXML
+    Line line;
+    @FXML
+    private Circle collisionCircle;
+
     public Ball ball;
     public Circle circle = new Circle(50, 150, 50, Color.RED);
+
+
 
     public Cerceau cerceau;
     public ScoreAnimation scoreAnimation;
@@ -55,7 +63,7 @@ public class MainController implements Initializable {
 
                 update(elapsedTime);
 
-                Platform.runLater(this::render);
+
 
                 try {
                     Thread.sleep(10); // For FrameRate
@@ -68,15 +76,20 @@ public class MainController implements Initializable {
     }
 
     private void update(long elapsedTime) {
-        if(CollisionChecker.checkCollision(ball, cerceau)) {
-            goesThrough(null); // Za3ma marka donc position t3 cerceau ttbdel
+        render();
+        if(CollisionChecker.checkCollision(circle, ball)) {
+            System.out.println("Collision detected");
+
         }
     }
 
     private void render() {
 
-        displayBall();
+
         displayCerceau();
+        displayBall();
+        collisionCircle.setCenterX(cerceau.getPositionX() - 250);
+        collisionCircle.setCenterY(cerceau.getPositionY() - 100);
     }
 
     public void stop() {
@@ -89,6 +102,14 @@ public class MainController implements Initializable {
         cerceau.put_random_position();
         cerceau.getCerceauSprite().setX(cerceau.getPositionX());
         cerceau.getCerceauSprite().setY(cerceau.getPositionY());
+    }
+
+    private void updateLinePosition() {
+        line.setEndX(cerceau.getPositionX());
+        line.setEndY(cerceau.getPositionY());
+        line.setStartX(cerceau.getPositionX() + 30);
+        line.setStartX(cerceau.getPositionY());
+
     }
 
     public void displayCerceau() {
