@@ -14,7 +14,7 @@ public class Constants {
 
     public final  static  int BALL_HIEGHT = 70;
     public final  static  int BALL_WIDTH = 70;
-    public static  int Ball_Shoot_Xvaraition = 400;
+    public static  int Ball_Shoot_Xvaraition = 200;
     public static  int Ball_Shoot_Yvaraition = 50;
     public static  Double Ball_int_PositionX =  Double.parseDouble( Constants.WINDOW_WIDTH - 200+"");
     public static  Double Ball_int_PositionY =  Double.parseDouble(Constants.WINDOW_HEIGHT - 220+"");

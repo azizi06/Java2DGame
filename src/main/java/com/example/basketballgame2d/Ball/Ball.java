@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
@@ -51,25 +52,19 @@ public class Ball {
         return circle;
     }
     public void TrowBall(Double x,Double y){
-
         Timeline timeline = new Timeline();
 
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(ballSprite);
-        rotate.setDuration(Duration.millis(200));
+        rotate.setDuration(Duration.millis(2000));
+        rotate.setByAngle(-480);
+        rotate.setAutoReverse(false);
 
+        //  rotate.setFromAngle(360);
+        rotate.setAxis(Rotate.Z_AXIS);
 
 
         PathTransition transition = new PathTransition();
-        Arc arc = new Arc();
-        arc.setCenterX(Constants.WINDOW_WIDTH - 200);
-        arc.setCenterY(Constants.WINDOW_HEIGHT - 220);
-        arc.setRadiusX(x-this.positionX);
-        arc.setRadiusY(y-this.getPositionY());
-        arc.setStartAngle(45.0f);
-        arc.setTranslateX(100);
-        arc.setTranslateY(100);
-       // arc.setLength(10);
 
         Path path = new Path();
 
@@ -80,15 +75,10 @@ public class Ball {
         ArcTo arcTo = new ArcTo();
         arcTo.setX(x-Constants.Ball_Shoot_Xvaraition);
         arcTo.setY(y-Constants.Ball_Shoot_Yvaraition);
-
         arcTo.setRadiusX(Math.abs(x-Constants.Ball_int_PositionX));
         arcTo.setRadiusY(y);
-        arcTo.setXAxisRotation(25);
+        arcTo.setXAxisRotation(30);
         arcTo.setSweepFlag(false);
-
-
-        arcTo.setRadiusX(x-this.getPositionX());
-        arcTo.setRadiusY(y);
 
 
 
@@ -97,25 +87,21 @@ public class Ball {
         path.getElements().add(moveTo);
         path.getElements().add(arcTo);
         path.getElements().add(new VLineTo(Constants.WINDOW_HEIGHT));
-     //   path.getElements().add(arcTo);
+        //   path.getElements().add(arcTo);
 
 
-
-
-
-
-
-        arc.setType(ArcType.ROUND);
         transition.setDuration(Duration.seconds(2));
         transition.setOrientation( PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         transition.setCycleCount(1);
         transition.setPath(path);
-
         transition.setNode(ballSprite);
-        transition.play();
-
-     //  this.ballSprite
-
+        //transition.play();
+        // rotate.play();
+        SequentialTransition sq = new SequentialTransition(ballSprite,rotate,transition);
+        ParallelTransition pr = new ParallelTransition();
+        pr.setCycleCount(1);
+        pr.getChildren().addAll(transition,rotate);
+        pr.play();
     }
     public  void  CollisionWhithHoop(){
 
