@@ -27,6 +27,7 @@ public class Main extends Application {
             menuStage.close();
 
             // Open the game stage
+
             Stage stage = new Stage();
             Scene scene = new Scene(GamefxmlLoader.load(), Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
             stage.setTitle(Constants.WINDOW_TITLE);
