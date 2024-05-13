@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
@@ -34,23 +33,31 @@ public class Ball {
     }
 
 
+
     public void MoveRight(){
        ballSprite.setX(ballSprite.getX()+2);
     }
     public  void  TrowBall2(Double x,Double y){
 
     }
-    public void TrowBall(Double x,Double y) throws InterruptedException {
+
+
+
+    public Shape getBallShape(){
+        Circle circle = new Circle();
+        circle.setCenterX(getPositionX());
+        circle.setCenterY(getPositionY());
+        circle.setRadius(Constants.BALL_HIEGHT / 2);
+        return circle;
+    }
+    public void TrowBall(Double x,Double y){
+
         Timeline timeline = new Timeline();
 
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(ballSprite);
-        rotate.setDuration(Duration.millis(2000));
-        rotate.setByAngle(-380);
-        rotate.setAutoReverse(false);
+        rotate.setDuration(Duration.millis(200));
 
-      //  rotate.setFromAngle(360);
-        rotate.setAxis(Rotate.Z_AXIS);
 
 
         PathTransition transition = new PathTransition();
@@ -73,10 +80,15 @@ public class Ball {
         ArcTo arcTo = new ArcTo();
         arcTo.setX(x-Constants.Ball_Shoot_Xvaraition);
         arcTo.setY(y-Constants.Ball_Shoot_Yvaraition);
+
         arcTo.setRadiusX(Math.abs(x-Constants.Ball_int_PositionX));
         arcTo.setRadiusY(y);
-        arcTo.setXAxisRotation(30);
+        arcTo.setXAxisRotation(25);
         arcTo.setSweepFlag(false);
+
+
+        arcTo.setRadiusX(x-this.getPositionX());
+        arcTo.setRadiusY(y);
 
 
 
@@ -98,14 +110,9 @@ public class Ball {
         transition.setOrientation( PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         transition.setCycleCount(1);
         transition.setPath(path);
+
         transition.setNode(ballSprite);
-        //transition.play();
-       // rotate.play();
-        SequentialTransition sq = new SequentialTransition(ballSprite,rotate,transition);
-        ParallelTransition pr = new ParallelTransition();
-        pr.setCycleCount(1);
-        pr.getChildren().addAll(transition,rotate);
-        pr.play();
+        transition.play();
 
      //  this.ballSprite
 
@@ -117,7 +124,8 @@ public class Ball {
         return positionX;
     }
 
-    public Double getPositionY() {
+    public Double getPositionY(){
         return  this.positionY;
     }
 }
+
