@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.basketballgame2d.MenuController">
    <children>
-      <Button fx:id="startButton" layoutX="595.0" layoutY="368.0" mnemonicParsing="false" onAction="#say_hi" prefHeight="25.0" prefWidth="106.0" text="Start New Game" />
-      <Button fx:id="settingsButton" layoutX="602.0" layoutY="407.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Settings" />
+      <ImageView fitHeight="964.0" fitWidth="1396.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@backgroundImages/menuBackground.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="startButton" layoutX="645.0" layoutY="382.0" mnemonicParsing="false" onAction="#say_hi" prefHeight="25.0" prefWidth="106.0" text="Start New Game" />
+      <Button fx:id="settingsButton" layoutX="652.0" layoutY="421.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Settings" />
    </children>
 </AnchorPane>
