@@ -40,7 +40,7 @@ public class Ball {
         rotate.setDuration(Duration.millis(2000));
         rotate.setByAngle(-380);
         rotate.setAutoReverse(false);
-        rotate.setCycleCount(4);
+
       //  rotate.setFromAngle(360);
         rotate.setAxis(Rotate.Z_AXIS);
 
@@ -101,7 +101,7 @@ public class Ball {
        // rotate.play();
         SequentialTransition sq = new SequentialTransition(ballSprite,rotate,transition);
         ParallelTransition pr = new ParallelTransition();
-        pr.setCycleCount(Timeline.INDEFINITE);
+        pr.setCycleCount(1);
         pr.getChildren().addAll(transition,rotate);
         pr.play();
 
