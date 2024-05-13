@@ -77,7 +77,7 @@ public class MainController implements Initializable {
 
     private void update(long elapsedTime) {
         render();
-        if(CollisionChecker.checkCollision(circle, ball)) {
+        if(CollisionChecker.checkCollision(line, ball)) {
             System.out.println("Collision detected");
 
         }
@@ -88,8 +88,7 @@ public class MainController implements Initializable {
 
         displayCerceau();
         displayBall();
-        collisionCircle.setCenterX(cerceau.getPositionX() - 250);
-        collisionCircle.setCenterY(cerceau.getPositionY() - 100);
+
     }
 
     public void stop() {
@@ -114,6 +113,8 @@ public class MainController implements Initializable {
 
     public void displayCerceau() {
         Platform.runLater(() -> {
+            collisionCircle.setCenterX(cerceau.getPositionX() - 250);
+            collisionCircle.setCenterY(cerceau.getPositionY() - 100);
             anchorPane.getChildren().remove(cerceau.getCerceauSprite());
             anchorPane.getChildren().add(cerceau.getCerceauSprite());
         });
