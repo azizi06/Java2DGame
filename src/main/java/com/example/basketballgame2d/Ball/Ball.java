@@ -1,9 +1,7 @@
 package com.example.basketballgame2d.Ball;
 
 import com.example.basketballgame2d.Constants;
-import javafx.animation.PathTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Arc;
@@ -34,17 +32,13 @@ public class Ball {
         return ballSprite;
     }
     public void TrowBall(Double x,Double y){
-       // TranslateTransition translateTransition = new TranslateTransition();
-       // translateTransition.setNode(ballSprite);
-       // translateTransition.setByX(-x);
-       // translateTransition.setByY(-y);
-       // translateTransition.setCycleCount(1);
-      //  translateTransition.play();
+        Timeline timeline = new Timeline();
+
         RotateTransition rotate = new RotateTransition();
         rotate.setNode(ballSprite);
         rotate.setDuration(Duration.millis(200));
-        rotate.setCycleCount(2);
-        rotate.play();
+
+
 
         PathTransition transition = new PathTransition();
         Arc arc = new Arc();
@@ -75,8 +69,16 @@ public class Ball {
         arcTo.setRadiusX(x-this.getPositionX());
         arcTo.setRadiusY(y);
 
+
+
+
         path.getElements().add(moveTo);
         path.getElements().add(arcTo);
+        path.getElements().add(new VLineTo(Constants.WINDOW_HEIGHT));
+     //   path.getElements().add(arcTo);
+
+
+
 
 
 
