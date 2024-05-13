@@ -13,8 +13,9 @@ import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 public class Ball {
-    private  Double positionX = Double.parseDouble( Constants.WINDOW_WIDTH - 200+"");
-    private Double positionY = Double.parseDouble(Constants.WINDOW_HEIGHT - 220+"");
+
+    private  Double positionX = Constants.Ball_int_PositionX;
+    private Double positionY = Constants.Ball_int_PositionY;
   private ImageView ballSprite ;
   private Image img = new Image(getClass().getResourceAsStream("/com/example/basketballgame2d/assets/ball.png"));
 
@@ -56,9 +57,7 @@ public class Ball {
         arc.setTranslateY(100);
        // arc.setLength(10);
 
-        Arc arc2 = new Arc(getPositionX(), getPositionY(), 100.0f, 100.0f, 0.0f, 100.0f);
-        arc2.setTranslateX(100);
-        arc2.setTranslateY(100);
+
 
 
 
@@ -71,8 +70,8 @@ public class Ball {
         moveTo.setY(getPositionY());
 
         ArcTo arcTo = new ArcTo();
-        arcTo.setX(x-200);
-        arcTo.setY(y-20);
+        arcTo.setX(x-Constants.Ball_Shoot_Xvaraition);
+        arcTo.setY(y-Constants.Ball_Shoot_Yvaraition);
         arcTo.setRadiusX(x-this.getPositionX());
         arcTo.setRadiusY(y);
 
