@@ -13,8 +13,10 @@ import javafx.util.Duration;
 import javafx.scene.shape.*;
 public class Ball {
 
-    private  Double positionX = Constants.Ball_int_PositionX;
-    private Double positionY = Constants.Ball_int_PositionY;
+//    private  Double positionX = Constants.Ball_int_PositionX;
+    private  Double positionX = 800.d;
+//    private Double positionY = Constants.Ball_int_PositionY;
+    private Double positionY = 600.d;
   private ImageView ballSprite ;
   private Image img = new Image(getClass().getResourceAsStream("/com/example/basketballgame2d/assets/ball.png"));
 
@@ -107,11 +109,11 @@ public class Ball {
 
     }
     public Double getPositionX() {
-        return positionX;
+        return ballSprite.getX();
     }
 
     public Double getPositionY(){
-        return  this.positionY;
+        return ballSprite.getX();
     }
 }
 
