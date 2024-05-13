@@ -32,6 +32,14 @@ public class Ball {
     public ImageView getBallSprite() {
         return ballSprite;
     }
+
+
+    public void MoveRight(){
+       ballSprite.setX(ballSprite.getX()+2);
+    }
+    public  void  TrowBall2(Double x,Double y){
+
+    }
     public void TrowBall(Double x,Double y) throws InterruptedException {
         Timeline timeline = new Timeline();
 
@@ -56,12 +64,6 @@ public class Ball {
         arc.setTranslateY(100);
        // arc.setLength(10);
 
-
-
-
-
-
-
         Path path = new Path();
 
         MoveTo moveTo = new MoveTo();
@@ -71,9 +73,9 @@ public class Ball {
         ArcTo arcTo = new ArcTo();
         arcTo.setX(x-Constants.Ball_Shoot_Xvaraition);
         arcTo.setY(y-Constants.Ball_Shoot_Yvaraition);
-        arcTo.setRadiusX(Math.abs(500));
-        arcTo.setRadiusY(200);
-        arcTo.setXAxisRotation(10);
+        arcTo.setRadiusX(Math.abs(x-Constants.Ball_int_PositionX));
+        arcTo.setRadiusY(y);
+        arcTo.setXAxisRotation(30);
         arcTo.setSweepFlag(false);
 
 
