@@ -77,10 +77,12 @@ public class MainController implements Initializable {
 
     private void update(long elapsedTime) {
         render();
-        if(CollisionChecker.checkCollision(line, ball)) {
+        if(CollisionChecker.checkCollision(circle, ball)) {
             System.out.println("Collision detected");
 
         }
+
+
     }
 
     private void render() {

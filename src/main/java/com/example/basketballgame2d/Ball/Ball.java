@@ -71,8 +71,8 @@ public class Ball {
         Path path = new Path();
 
         MoveTo moveTo = new MoveTo();
-        moveTo.setX(getPositionX());
-        moveTo.setY(getPositionY());
+        moveTo.setX(Constants.Ball_int_PositionX);
+        moveTo.setY(Constants.Ball_int_PositionY);
 
         ArcTo arcTo = new ArcTo();
         arcTo.setX(x-Constants.Ball_Shoot_Xvaraition);
@@ -89,6 +89,8 @@ public class Ball {
         path.getElements().add(moveTo);
         path.getElements().add(arcTo);
         path.getElements().add(new VLineTo(Constants.WINDOW_HEIGHT));
+        path.getElements().add(new VLineTo(Constants.WINDOW_HEIGHT-40));
+        path.getElements().add(new VLineTo(Constants.WINDOW_HEIGHT));
         //   path.getElements().add(arcTo);
 
 
@@ -104,6 +106,10 @@ public class Ball {
         pr.setCycleCount(1);
         pr.getChildren().addAll(transition,rotate);
         pr.play();
+    }
+
+    public void  ThrowBall(Double x,Double y){
+
     }
     public  void  CollisionWhithHoop(){
 
